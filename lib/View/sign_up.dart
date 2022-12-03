@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'login.dart';
-
-
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -15,13 +12,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-   final auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
 
-  var name =TextEditingController();
-  var age =TextEditingController();
-  var phonenumber =TextEditingController();
-  var username =TextEditingController();
-  var pass =TextEditingController();
+  var name = TextEditingController();
+  var age = TextEditingController();
+  var phonenumber = TextEditingController();
+  var username = TextEditingController();
+  var pass = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
   @override
@@ -36,8 +33,8 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 children: [
                   TextFormField(
-                    validator:  (value){
-                      if(value==null || value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return "Enter Name";
                       }
                       return null;
@@ -47,14 +44,15 @@ class _SignUpState extends State<SignUp> {
                         hintText: "Name",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                        )
-                    ),
+                        )),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     controller: age,
-                    validator:  (value){
-                      if(value==null || value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return "Enter Age";
                       }
                       return null;
@@ -63,17 +61,19 @@ class _SignUpState extends State<SignUp> {
                         hintText: "age",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                        )
-                    ),
+                        )),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: phonenumber,
-                    validator:  (value){
-                      if(value==null || value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return "Enter PhoneNumner";
-                      }if(value.length<10){
+                      }
+                      if (value.length < 10) {
                         return "Enter 10 Number";
                       }
                       return null;
@@ -82,14 +82,15 @@ class _SignUpState extends State<SignUp> {
                         hintText: "Phone Number",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                        )
-                    ),
+                        )),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
                     controller: username,
-                    validator:  (value){
-                      if(value==null || value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return "Enter Username";
                       }
                       return null;
@@ -98,13 +99,14 @@ class _SignUpState extends State<SignUp> {
                         hintText: "UserName",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                        )
-                    ),
+                        )),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   TextFormField(
-                    validator:  (value){
-                      if(value==null || value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return "Enter Password";
                       }
                       return null;
@@ -114,18 +116,22 @@ class _SignUpState extends State<SignUp> {
                         hintText: "Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                        )
-                    ),
+                        )),
                   ),
-                  ElevatedButton(onPressed: ()async{
-                    final valid = _formKey.currentState!.validate();
-                    if(valid == true){
-                      var userdata = await auth.createUserWithEmailAndPassword(email: username.text, password: pass.text);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
-                    }else{
-                      return ;
-                    }
-                  }, child: Text("Sing Up"))
+                  ElevatedButton(
+                      onPressed: () async {
+                        final valid = _formKey.currentState!.validate();
+                        if (valid == true) {
+                          var userdata =
+                              await auth.createUserWithEmailAndPassword(
+                                  email: username.text, password: pass.text);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Login()));
+                        } else {
+                          return;
+                        }
+                      },
+                      child: Text("Sing Up"))
                 ],
               ),
             ),

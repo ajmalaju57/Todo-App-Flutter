@@ -1,19 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todoapp_firebase/View/home.dart';
 import 'package:todoapp_firebase/View/newnote.dart';
 import 'package:todoapp_firebase/View/noteview.dart';
-
-import '../View/homeview.dart';
+import 'View/homeview.dart';
 
 class ListFile{
   static TextEditingController  Title = TextEditingController();
   static TextEditingController SubTitle = TextEditingController();
-  static  dynamic color=3 ;
+  static  dynamic color=3;
   static List<Color> cardColor = [
     Colors.blue,
-    Colors.yellow,
+    Colors.green.shade200,
     Colors.pinkAccent,
     Colors.blueGrey
   ];
@@ -23,6 +21,6 @@ class ListFile{
     NoteView(),
   ];
 
-  static String? email;
-  static QueryDocumentSnapshot? bg;
+  static dynamic email;
+  static  QueryDocumentSnapshot? bg;
 }

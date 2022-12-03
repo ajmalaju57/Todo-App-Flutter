@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp_firebase/View/homeview.dart';
-import '../Controller/colors.dart';
-import '../Controller/listfile.dart';
+import '../Widget/colors.dart';
+import '../listfile.dart';
 
 class NewNote extends StatefulWidget {
   QueryDocumentSnapshot? docNew;
@@ -17,12 +17,12 @@ class NewNote extends StatefulWidget {
 }
 
 class _NewNoteState extends State<NewNote> {
-
-
-
   Postdata() async {
-    FirebaseFirestore.instance.collection('noteapp').doc
-      ('${ListFile.email}').collection('notes').add({
+    FirebaseFirestore.instance
+        .collection('noteapp')
+        .doc('${ListFile.email}')
+        .collection('notes')
+        .add({
       'title': ListFile.Title.text,
       'subTitle': ListFile.SubTitle.text,
       'color': ListFile.color,
@@ -30,14 +30,20 @@ class _NewNoteState extends State<NewNote> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    print(size.width);
+    print(size.height);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: ListFile.cardColor[ListFile.color],
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color(0xFF000633),
+        backgroundColor: ListFile.cardColor[ListFile.color],
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
+        ),
         title: Text(
           "New Note",
           style: TextStyle(color: Colors.white),
@@ -93,6 +99,10 @@ class _NewNoteState extends State<NewNote> {
         onPressed: () {
           if (ListFile.Title.text.isNotEmpty) {
             Postdata();
+            setState((){
+              ListFile.Title.text="";
+              ListFile.SubTitle.text="";
+            });
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => HomeView()));
           } else {
@@ -102,7 +112,6 @@ class _NewNoteState extends State<NewNote> {
                 duration: Duration(seconds: 1));
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
-          // updateData(widget.id);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -151,7 +160,7 @@ class _NewNoteState extends State<NewNote> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(bottom: 5, right: 13),
+                          padding: EdgeInsets.only(bottom: 5, right: size.width*.016),
                           child: Row(
                             children: [
                               InkWell(
@@ -164,7 +173,7 @@ class _NewNoteState extends State<NewNote> {
                                     coloritem: Colors.blue,
                                   )),
                               SizedBox(
-                                width: 10,
+                                width: size.width*.013,
                               ),
                               InkWell(
                                   onTap: () {
@@ -172,9 +181,9 @@ class _NewNoteState extends State<NewNote> {
                                       ListFile.color = 1;
                                     });
                                   },
-                                  child: ColorsPanel(coloritem: Colors.yellow)),
+                                  child: ColorsPanel(coloritem: Colors.green.shade200)),
                               SizedBox(
-                                width: 10,
+                                width: size.width*.013,
                               ),
                               InkWell(
                                   onTap: () {

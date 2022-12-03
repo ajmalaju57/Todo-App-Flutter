@@ -2,60 +2,50 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp_firebase/View/homeview.dart';
-
-import '../Controller/colors.dart';
-import '../Controller/listfile.dart';
-import 'home.dart';
-
-
+import '../Widget/colors.dart';
+import '../listfile.dart';
 class NoteView extends StatefulWidget {
   final text2;
   final description2;
   dynamic id;
+  final color;
   QueryDocumentSnapshot? doc;
-   NoteView({Key? key, this.text2,this.description2,this.id,this.doc}) : super(key: key);
-
-
+   NoteView({Key? key, this.text2,this.description2,this.id,this.doc,this.color}) : super(key: key);
   @override
   State<NoteView> createState() => _NoteViewState();
 }
-
 class _NoteViewState extends State<NoteView> {
   var titile = TextEditingController();
   var subtitle = TextEditingController();
-
-  dynamic colorsUpdate=0;
-
   addText(){
     setState((){
       titile.text=widget.text2.toString();
       subtitle.text=widget.description2.toString();
     });
-
   }
   @override
   initState(){
     super.initState();
     addText();
   }
-
   Future<dynamic>updateData(id)async{
     FirebaseFirestore.instance.collection("noteapp").doc('${ListFile.email}').collection("notes").doc(id).update({
       "title":titile.text,
       "subTitle":subtitle.text,
-      "color":colorsUpdate,
+      "color":ListFile.color,
     });
   }
   @override
   Widget build(BuildContext context) {
+    Size size =MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: ListFile.cardColor[colorsUpdate],
+      resizeToAvoidBottomInset: false,
+      backgroundColor: ListFile.cardColor[widget.color],
       appBar:AppBar(
-        backgroundColor: Color(0xFF000633),
+        backgroundColor: ListFile.cardColor[widget.color],
         iconTheme: IconThemeData(
           color: Colors.white, //change your color here
         ),
-        // title: Text("NoteView"),
       ),
       body:
       Padding(
@@ -140,29 +130,29 @@ class _NoteViewState extends State<NoteView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding:  EdgeInsets.only(bottom: 5,right: 13),
+                          padding:  EdgeInsets.only(bottom: 5, right: size.width*.016),
                           child: Row(
                             children: [
                             InkWell(
                                   onTap: (){
                                     setState(() {
-                                      colorsUpdate=0;
+                                      ListFile.color=0;
                                     });
                                   },
                                   child: ColorsPanel(coloritem: Colors.blue,)),
-                              SizedBox(width: 10,),
+                              SizedBox(width: size.width*.013,),
                              InkWell(
                                   onTap: (){
                                     setState(() {
-                                      colorsUpdate=1;
+                                      ListFile.color=1;
                                     });
                                   },
                                   child: ColorsPanel(coloritem: Colors.yellow)),
-                              SizedBox(width: 10,),
+                              SizedBox(width: size.width*.013,),
                             InkWell(
                                   onTap: (){
                                     setState(() {
-                                      colorsUpdate=2;
+                                      ListFile.color=2;
                                     });
                                   },
                                   child: ColorsPanel(coloritem: Colors.pinkAccent)),
