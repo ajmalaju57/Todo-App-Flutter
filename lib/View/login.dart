@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:todoapp_firebase/View/homeview.dart';
 import 'package:todoapp_firebase/View/sign_up.dart';
 
+import '../listfile.dart';
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
   @override
@@ -18,6 +19,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xFF000633),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -30,24 +32,57 @@ class _LoginState extends State<Login> {
                     child:
                         Lottie.asset('assets/106680-login-and-sign-up.json')),
                 TextField(
+                  style:TextStyle(color: Colors.white),
                   controller: username,
                   decoration: InputDecoration(
                       hintText: "Username",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      )),
+                      hintStyle: TextStyle(color: Colors.white),
+                    enabledBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                     ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 TextField(
+                  style:TextStyle(color: Colors.white),
                   controller: pass,
                   decoration: InputDecoration(
                       hintText: "Password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      )),
+                      hintStyle: TextStyle(color: Colors.white),
+                    enabledBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                    focusedBorder:OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                  ),
                 ),
+                SizedBox(height: 40,),
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      maxRadius: 20,
+                        backgroundColor: Color(0xFF000633),
+                      child: Image.asset("assets/images/download.png",fit: BoxFit.fill,)
+                    ),
+                    SizedBox(width: 30,),
+                    CircleAvatar(
+                        maxRadius: 20,
+                        backgroundColor: Color(0xFF000633),
+                        child: Image.asset("assets/images/facebook.png",fit: BoxFit.fill,)
+                    ),
+                  ],
+                ),
+                SizedBox(height: 40,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -60,7 +95,7 @@ class _LoginState extends State<Login> {
                         },
                         child: Text("Sing Up")),
                     SizedBox(
-                      width: 10,
+                      width: 25,
                     ),
                     ElevatedButton(
                         onPressed: () async {
@@ -69,6 +104,7 @@ class _LoginState extends State<Login> {
                                 .signInWithEmailAndPassword(
                                     email: username.text, password: pass.text)
                                 .then((value) {
+                              ListFile.email=username.text;
                               final snackBar = SnackBar(
                                   backgroundColor: Colors.green,
                                   content: Text("Login Scccus"),

@@ -25,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0xFF000633),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
@@ -38,13 +39,21 @@ class _SignUpState extends State<SignUp> {
                         return "Enter Name";
                       }
                       return null;
+
                     },
                     controller: name,
                     decoration: InputDecoration(
                         hintText: "Name",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        )),
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -59,9 +68,16 @@ class _SignUpState extends State<SignUp> {
                     },
                     decoration: InputDecoration(
                         hintText: "age",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        )),
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -80,9 +96,15 @@ class _SignUpState extends State<SignUp> {
                     },
                     decoration: InputDecoration(
                         hintText: "Phone Number",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        )),
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),),
                   ),
                   SizedBox(
                     height: 10,
@@ -97,9 +119,15 @@ class _SignUpState extends State<SignUp> {
                     },
                     decoration: InputDecoration(
                         hintText: "UserName",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        )),
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),),
                   ),
                   SizedBox(
                     height: 10,
@@ -114,10 +142,17 @@ class _SignUpState extends State<SignUp> {
                     controller: pass,
                     decoration: InputDecoration(
                         hintText: "Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        )),
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      focusedBorder:OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),),
                   ),
+                  SizedBox(height: 30,),
                   ElevatedButton(
                       onPressed: () async {
                         final valid = _formKey.currentState!.validate();
