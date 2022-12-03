@@ -34,6 +34,7 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 children: [
                   TextFormField(
+                    style:TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Enter Name";
@@ -59,6 +60,7 @@ class _SignUpState extends State<SignUp> {
                     height: 10,
                   ),
                   TextFormField(
+                    style:TextStyle(color: Colors.white),
                     controller: age,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -83,6 +85,7 @@ class _SignUpState extends State<SignUp> {
                     height: 10,
                   ),
                   TextFormField(
+                    style:TextStyle(color: Colors.white),
                     keyboardType: TextInputType.number,
                     controller: phonenumber,
                     validator: (value) {
@@ -110,6 +113,7 @@ class _SignUpState extends State<SignUp> {
                     height: 10,
                   ),
                   TextFormField(
+                    style:TextStyle(color: Colors.white),
                     controller: username,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -133,6 +137,7 @@ class _SignUpState extends State<SignUp> {
                     height: 10,
                   ),
                   TextFormField(
+                    style:TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Enter Password";
@@ -162,6 +167,12 @@ class _SignUpState extends State<SignUp> {
                                   email: username.text, password: pass.text);
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Login()));
+                          final snackBar = SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Text("Sign Up Scccus"),
+                              duration: Duration(seconds: 1));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBar);
                         } else {
                           return;
                         }
